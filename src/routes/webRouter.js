@@ -1,35 +1,23 @@
 import HomeController from "../controllers/HomeController.js"
 import UserController from "../controllers/UserController.js"
+import userModel from "../models/userModel.js"
 const initRouter = (app) => {
     app.get('/', HomeController.main)
     app.get('/about', HomeController.about)
     app.get('/home', HomeController.home)
 
     app.get('/user', UserController.user)
-    app.get('/create-new-user', UserController.create)
-    const UserController = (req, res) => {
-        const page = parseInt(req.query.page) || 1;
-        const perPage = 5;
-        const from = (page - 1) * perPage + 1;
-        const to = page * perPage;
-        
-        res.send(`Displaying users from ${from} to ${to}`);
-      };
-      
+    app.get('/insert-new-user', UserController.insertUser)
+    app.post('/create-user', UserController.create_user)
+    app.get('/detail-user/:username',UserController.detailUser)
+    app.post('/delete-user/:username', UserController.deleteUser)
+    app.get('/edit-user/:username', UserController.editUser)
+    app.post('/update-user/:username', UserController.updateUser)
+    app.get('/login', UserController.login)
+    app.post('/authLogin', UserController.authLogin)
+    app.get('/logout', UserController.logout)
       // Định nghĩa tuyến đường cho /list-user và chạy qua controller
-    app.get('/list-user', UserController);
-    app.get("/login", UserController.login)
-    const headerController = (req, res) => {
-        const username = req.params.username || 'Guest';
-        res.send(`
-          <header>
-            <h1><a href="/${encodeURIComponent(username)}">Header</a></h1>
-          </header>
-          <main>
-            <h2>Welcome, ${username}!</h2>
-          </main>
-        `);
-      };
-      app.get('/:username', headerController);
+    app.get('/list-user', UserController.listUser);
+    
 }
 export default initRouter
