@@ -10,7 +10,7 @@ app.use(session({
     saveUninitialized: true,
   }))
 dotenv.config()
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 8080
 configViewEngine(app)
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())

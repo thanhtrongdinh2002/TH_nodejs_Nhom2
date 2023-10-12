@@ -1,6 +1,6 @@
 import pool from '../configs/connectDB.js'
 const getAllUser = async () => {
-    const[rows, fields] = await pool.execute('SELECT * FROM `users`')
+    const[rows, fields] = await pool.execute('SELECT * FROM `users` WHERE role = 0')
     return rows
 }
 const createNewUser = async(username, password, fullname, address, sex, email, groupid) => {

@@ -1,13 +1,8 @@
+import userModel from '../models/userModel.js'
+
 class HomeController{
-    main(req, res) {
-        res.render("main")
+    async main(req, res) {
+        res.render("main", { data: {page: 'home'}})
     }
-    home(req, res) {
-        res.render("home")
-    }
-    about(req, res){
-        res.render("about")
-    }
-    
 }
 export default new HomeController

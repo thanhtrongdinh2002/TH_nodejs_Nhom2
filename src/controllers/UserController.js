@@ -1,6 +1,8 @@
 import expres from "express"
 import userModel from '../models/userModel.js'
 
+
+
 const getAllUser = async (req, res) => {
     let userList = await userModel.getAllUser()
     res.render('home', {data: {title: 'List User', page: 'listUser', rows:userlist}})
@@ -16,7 +18,7 @@ const create_user = async (req, res) => {
 }
 const listUser = async (req, res) => {
     const users = await userModel.getAllUser();
-    res.render('listUser', { users: users });
+    res.render('main', { users: users ,data: {page: 'listUser'}});
 }
 
 const detailUser = async (req, res) => {
@@ -26,7 +28,7 @@ const detailUser = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'Người dùng không tồn tại' });
     }
-    res.render("detailUser",{username: user})
+    res.render("main", {username: user, data: {page: 'detailUser'}})
     // Trả về chi tiết người dùng
 }
 const deleteUser = async (req, res) => {
@@ -35,9 +37,7 @@ const deleteUser = async (req, res) => {
     if (!user) {
         return res.status(404).json({ message: 'Người dùng không tồn tại' });
     }else{
-        res.send('Xóa thành công', () => {
-            res.redirect('/list-user');
-          });
+        res.redirect('/list-user');
     }
 }
 const editUser = async (req, res) => {
@@ -64,14 +64,19 @@ const login = (req, res) => {
 const authLogin = async (req, res) => {
     const {username, password} = req.body;
     const user = await userModel.detailUser(username)
-    if(password != user[0].password){
-        res.send("Sai mật khẩu")
+    if (!user[0]) {
+        return res.status(404).json({ message: 'Người dùng không tồn tại' });
     }
-    req.session.user = {
-        user: username
-        
+    else if(password != user[0].password){
+       res.send("Sai mật khẩu")
+    }else{
+        req.session.user = {
+            user: username,
+            role: user[0].role
+        }
+        res.redirect('/')
     }
-    res.redirect('/list-user')
+    
 }
 
 const logout = async (req, res) => {
