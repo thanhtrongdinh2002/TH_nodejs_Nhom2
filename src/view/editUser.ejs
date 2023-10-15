@@ -11,6 +11,7 @@
 
 <body>
     <form action="/update-user/<%= users[0].username %>" method="post">
+        <h1>FORM UPDATE USER</h1>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Full Name</label>
             <input type="text" class="form-control" name="fullname" id="FullName" value="<%= users[0].fullname %>">
@@ -47,6 +48,10 @@
             <label class="form-check-label" for="flexRadioDefault2">
                 Group 2
             </label>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Role</label>
+            <input type="number" class="form-control" name="fullname" id="FullName" value="<%= users[0].role %>">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

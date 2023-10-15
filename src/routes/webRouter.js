@@ -17,5 +17,11 @@ const initRouter = (app) => {
   app.get("/logout",isLogin, isRole, UserController.logout);
   // Định nghĩa tuyến đường cho /list-user và chạy qua controller
   app.get("/list-user", isLogin, isRole,UserController.listUser);
+
+  app.get("/list-product", isLogin, isRole,UserController.listProduct);
+  app.get("/detail-product/:idsp",isLogin, isRole, UserController.detailProduct);
+  app.get("/delete-product/:idsp",isLogin, isRole, UserController.deleteProduct);
+  app.get("/edit-product/:idsp",isLogin, isRole, UserController.editProduct);
+  app.post("/update-product/:idsp",isLogin, isRole, UserController.updateProduct);
 };
 export default initRouter;

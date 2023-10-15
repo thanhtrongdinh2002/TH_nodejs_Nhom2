@@ -14,49 +14,44 @@
 </head>
 
 <body>
-    <h1>LIST USER</h1>
+    <h1>LIST PRODUCT</h1>
     <table class="table">
         <thead>
-          <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Username</th>
-            <th scope="col">Fullname</th>
-            <th scope="col">Sex</th>
-            <th scope="col">Chi tiết</th>
-            <th scope="col">Sửa</th>
-            <th scope="col">Xóa</th>
-        </tr>    
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Price</th>
+                <th scope="col">Product Type</th>
+                <th scope="col">Chi tiết</th>
+                <th scope="col">Sửa</th>
+                <th scope="col">Xóa</th>
+            </tr>
         </thead>
         <tbody>
-            <% for(let i=0; i<users.length;i++){%>
+            <% for(let i=0; i<id_product.length;i++){%>
                 <tr>
                     <th scope="row">
                         <%= i+1 %>
                     </th>
                     <td>
-                        <%= users[i].username %>
+                        <%= id_product[i].tensp %>
                     </td>
                     <td>
-                        <%= users[i].fullname %>
+                        <%= id_product[i].giasp %>vnđ
                     </td>
                     <td>
-                        <%= users[i].name %>
-                            <% if (users[i].sex==1) { %>
-                                Nam
-                                <% } else { %>
-                                    Nữ
-                                    <% } %>
+                        <%= id_product[i].iddanhmuc %>
                     </td>
-                   
-                    
-                    <td><a href="/detail-user/<%= users[i].username %>"><i class="fa-solid fa-circle-info"></i></a></td>
-                    <td> <a href="/edit-user/<%= users[i].username %>"><i class="fa-regular fa-pen-to-square"></i></a></td>
-                    <td><a href="/delete-user/<%= users[i].username %>"><i class="fa-solid fa-trash"></i></a></td>
-    
+                    <td><a href="/detail-product/<%= id_product[i].idsp %>"><i class="fa-solid fa-circle-info"></i></a>
+                    </td>
+                    <td> <a href="/edit-product/<%= id_product[i].idsp %>"><i class="fa-regular fa-pen-to-square"></i></a>
+                    </td>
+                    <td><a href="/delete-product/<%= id_product[i].idsp %>"><i class="fa-solid fa-trash"></i></a></td>
+
                 </tr>
                 <%}%>
         </tbody>
-      </table>
+    </table>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>

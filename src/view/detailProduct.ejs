@@ -12,56 +12,44 @@
 </head>
 
 <body>
-    <h1>DETAIL USER</h1>
+    <h1>DETAIL PRODUCT</h1>
     <table class="table">
         <thead>
           <tr>
             <th scope="col">STT</th>
-            <th scope="col">Username</th>
-            <th scope="col">Fullname</th>
-            <th scope="col">Address</th>
-            <th scope="col">Sex</th>
-            <th scope="col">Email</th>
-            <th scope="col">Groupid</th>
-            <th scope="col">Role</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Detail</th>
+            <th scope="col">Product Price</th>
+            <th scope="col">Product Image</th>
+            <th scope="col">Product Type</th>
             <th scope="col">Sửa</th>
             <th scope="col">Xóa</th>
         </tr>    
         </thead>
         <tbody>
-            <% for(let i=0; i<username.length;i++){%>
+            <% for(let i=0; i<idsp.length;i++){%>
                 <tr>
                     <th scope="row">
                         <%= i+1 %>
                     </th>
                     <td>
-                        <%= username[i].username %>
+                        <%= idsp[i].tensp %>
                     </td>
                     <td>
-                        <%= username[i].fullname %>
+                        <%= idsp[i].chitietsp %>
                     </td>
                     <td>
-                        <%= username[i].address %>
+                        <%= idsp[i].giasp %>
                     </td>
                     <td>
-                        <%= username[i].name %>
-                            <% if (username[i].sex===1) { %>
-                                Nam
-                                <% } else { %>
-                                    Nữ
-                                    <% } %>
+                        <%= idsp[i].hinhanh %>
                     </td>
                     <td>
-                        <%= username[i].email %>
+                        <%= idsp[i].iddanhmuc %>
                     </td>
-                    <td>
-                        <%= username[i].groupid %>
-                    </td>
-                    <td>
-                        <%= username[i].role %>
-                    </td>
-                    <td> <a href="/edit-user/<%= username[i].username %>"><i class="fa-regular fa-pen-to-square"></i></a></td>
-                    <td><a href="/delete-user/<%= username[i].username %>"><i class="fa-solid fa-trash"></i></a></td>
+                    
+                    <td> <a href="/edit-product/<%= idsp[i].idsp %>"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                    <td><a href="/delete-product/<%= idsp[i].idsp %>"><i class="fa-solid fa-trash"></i></a></td>
     
                 </tr>
                 <%}%>
