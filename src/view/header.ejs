@@ -1,6 +1,6 @@
 <style>
   a {
-    font-weight: 700;
+    font-weight: 500;
     padding-bottom: 0;
   }
 
@@ -58,7 +58,7 @@
     content: "";
     position: absolute;
     width: 100%;
-    border-bottom: 4px solid #0d6efd;
+    border-bottom: 2px solid #ffffff;
     /* Đổi màu và độ dày của đường gạch chân */
     bottom: -2px;
     transform: scaleX(0);
@@ -69,15 +69,19 @@
     transform: scaleX(1);
   }
 </style>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/list-user">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top ">
+  <div class="px-2 d-flex">
+
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/list-user">LIST USER</a>
         </li>
@@ -101,6 +105,7 @@
         </li>
 
       </ul>
+
     </div>
   </div>
 </nav>

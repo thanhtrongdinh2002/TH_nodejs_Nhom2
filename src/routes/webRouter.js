@@ -2,7 +2,9 @@ import HomeController from "../controllers/HomeController.js";
 import UserController from "../controllers/UserController.js";
 import isLogin from "../middleware/isLogin.js";
 import isRole from "../middleware/isRole.js";
+import apiRoute from "./apiRouter.js";
 const initRouter = (app) => {
+  app.use("/api", apiRoute)
   app.get("/login", UserController.login);
   app.post("/authLogin", UserController.authLogin);
   app.get("/",isLogin, isRole,  HomeController.main);

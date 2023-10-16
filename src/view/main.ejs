@@ -10,17 +10,18 @@
 
 <body>
     <%- include('header') %>
+        <div class="" style="min-height: calc(100vh - 100px); padding-top: 56px;">
+            <div class="container">
 
-        <% if (data.page) { %>
-            <%- include(data.page); %>
-                <% } %>
+                <% if (data.page) { %>
+                    <%- include(data.page); %>
+                        <% } %>
+            </div>
+        </div>
 
-                    <div style="position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;">
-                        <%- include('footer') %>
-                    </div>
+        <div>
+            <%- include('footer') %>
+        </div>
 
 </body>
 
