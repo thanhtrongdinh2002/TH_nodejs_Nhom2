@@ -40,5 +40,6 @@ const initRouter = (app) => {
   app.get("/delete-category/:iddm",isLogin, isRole, UserController.deleteCategory);
   app.get("/insert-category",isLogin, isRole, UserController.insertCategory);
   app.post("/create-category",isLogin, isRole, UserController.create_category);
+  app.get("/chitietsp/:id", UserController.chitietsp)
 };
 export default initRouter;

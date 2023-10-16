@@ -1,28 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <form action="/giohang/<%= idsp[i].idsp %>" method="post">
-        <div class="mb-3">
-            <%= idsp[i].tensp %>
-        </div>
-        <div class="mb-3">
-            <%= idsp[i].chitietsp %>
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Full Name</label>
-            <input type="text" class="form-control" name="fullname" id="FullName" value="<%= idsp[i].giasp %>">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" name="email" id="exampleInputEmail1" value="<%= idsp[i].hinhanh %>"
-                aria-describedby="emailHelp">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <img src="/image/<%= idchitiet.hinhanh %>" alt="" style="height: 100px;" width="100px" >
+    <li><%= idchitiet.tensp %></li>
+    <li><%= idchitiet.giasp %></li>
+    <li><%= idchitiet.chitietsp %></li>
+    <a href="/list-sanpham">Quay lại</a>
 </body>
+
 </html>
