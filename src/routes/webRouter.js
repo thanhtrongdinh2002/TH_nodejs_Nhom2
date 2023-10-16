@@ -7,7 +7,6 @@ const initRouter = (app) => {
   app.post("/authLogin", UserController.authLogin);
   app.get("/",isLogin, isRole,  HomeController.main);
 
-  app.get("/user",isLogin, isRole, UserController.user);
   app.get("/insert-new-user",isLogin, isRole, UserController.insertUser);
   app.post("/create-user",isLogin, isRole, UserController.create_user);
   app.get("/detail-user/:username",isLogin, isRole, UserController.detailUser);
@@ -23,5 +22,17 @@ const initRouter = (app) => {
   app.get("/delete-product/:idsp",isLogin, isRole, UserController.deleteProduct);
   app.get("/edit-product/:idsp",isLogin, isRole, UserController.editProduct);
   app.post("/update-product/:idsp",isLogin, isRole, UserController.updateProduct);
+  app.get("/insert-product",isLogin, isRole, UserController.insertProduct);
+  app.post("/create-product",isLogin, isRole, UserController.create_product);
+
+
+  app.get("/list-category", isLogin, isRole,UserController.listCategogy);
+  app.get("/edit-category/:iddm",isLogin, isRole, UserController.editCategory);
+  app.post("/update-category/:iddm",isLogin, isRole, UserController.updateCategory);
+  app.get("/delete-category/:iddm",isLogin, isRole, UserController.deleteCategory);
+  app.get("/insert-category",isLogin, isRole, UserController.insertCategory);
+  app.post("/create-category",isLogin, isRole, UserController.create_category);
+
+
 };
 export default initRouter;

@@ -37,7 +37,9 @@ const update_Product = async(tensp, chitietsp, giasp, hinhanh,iddanhmuc, idsanph
     const [rows, fields] = await pool.execute('UPDATE `sp` SET `tensp`=?,`chitietsp`=?,`giasp`=?,`hinhanh`=?,`iddanhmuc`=? WHERE `idsp`=?', [tensp, chitietsp, giasp, hinhanh,iddanhmuc, idsanpham]);
     return rows; 
 }
-
+const createProduct = async(tensp,chitietsp,giasp,hinhanh,iddanhmuc) => {
+    const [rows, fields] = await pool.execute("INSERT INTO `sp`( `tensp`, `chitietsp`, `giasp`, `hinhanh`, `iddanhmuc`) VALUES (?,?,?,?,?)",[tensp,chitietsp,giasp,hinhanh,iddanhmuc])
+}
 
 
 const getAllcategory = async() => {
@@ -56,6 +58,7 @@ const update_Category = async(tendanhmuc, iddanhmuc) => {
     const [rows, fields] = await pool.execute('UPDATE `danhmuc` SET `tendanhmuc`=? WHERE `iddanhmuc` = ?', [tendanhmuc, iddanhmuc]);
     return rows; 
 }
-
-export default {getAllUser, createNewUser, detailUser, update_User, fun_deleteUser, getAllProduct, detail_Product, fun_deleteProduct, update_Product, getAllcategory, detail_category, fun_deleteCategory, update_Category}
-// thiếu create sản phẩn và create danh mục
+const createCategory= async(tendanhmuc) => {
+    const [rows, fields] = await pool.execute("INSERT INTO `danhmuc`( `tendanhmuc`) VALUES (?)",[tendanhmuc])
+}
+export default {getAllUser, createNewUser, detailUser, update_User, fun_deleteUser, getAllProduct,createProduct, detail_Product, fun_deleteProduct, update_Product, getAllcategory, detail_category, fun_deleteCategory, update_Category, createCategory}

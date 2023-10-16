@@ -1,25 +1,106 @@
+<style>
+  a {
+    font-weight: 700;
+    padding-bottom: 0;
+  }
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/list-user">Home</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/insert-new-user">insert new user</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/list-user">list User</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/logout">logout</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/list-product">List Product</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+  a.nav-link.active {
+    padding-bottom: 0px;
+  }
+
+  nav.navbar.navbar-expand-lg.bg-body-tertiary {
+    padding: 0;
+  }
+
+  li {
+    display: inline-block;
+    /* Thêm thuộc tính display */
+    color: #333;
+    /* Màu chữ */
+    text-decoration: none;
+    /* Loại bỏ underline mặc định */
+    position: relative;
+    /* Cần để tạo hiệu ứng hover */
+  }
+
+  li::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    /* Độ dày của underline */
+    bottom: -2px;
+    /* Vị trí của underline so với chữ */
+    background-color: #333;
+    /* Màu của underline */
+    visibility: hidden;
+    /* Ẩn underline ban đầu */
+    transform: scaleX(0);
+    /* Thu nhỏ underline ban đầu */
+    transition: all 0.3s ease-in-out;
+    /* Hiệu ứng chuyển động */
+  }
+
+  li:hover::before {
+    visibility: visible;
+    /* Hiển thị underline khi hover */
+    transform: scaleX(1);
+    /* Mở rộng underline khi hover */
+  }
+
+  li {
+    color: #333;
+    text-decoration: none;
+    position: relative;
+  }
+
+  li::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 4px solid #0d6efd;
+    /* Đổi màu và độ dày của đường gạch chân */
+    bottom: -2px;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+  }
+
+  li:hover::after {
+    transform: scaleX(1);
+  }
+</style>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/list-user">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/list-user">LIST USER</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/list-product">LIST PRODUCT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/list-category">LIST CATEGORY</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/insert-new-user">ADD NEW USER</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/insert-product">ADD NEW PRODUCT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/insert-category">ADD NEW CATEGORY</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/logout">LOGOUT</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>

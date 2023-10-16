@@ -2,7 +2,6 @@ import expres from "express"
 import userModel from '../models/userModel.js'
 
 
-
 const getAllUser = async (req, res) => {
     const userList = await userModel.getAllUser()
     res.render('home', {data: {title: 'List User', page: 'listUser', rows: userList}})
@@ -11,18 +10,19 @@ const insertUser = (req, res) => {
     res.render('newUser', {data: {title: 'Create New User', page: 'createNewUser'}})
 }
 const create_user = async (req, res) => {
-    console.log(req.body)
-    const {username, password, fullname, address, sex, email, groupid} = req.body;
-    await userModel.createNewUser(username, password, fullname, address, sex, email, groupid)
-    res.redirect("/list-user")
+    const user = userModel.detailUser(req.body.username)
+    if(!user){
+        const {username, password, fullname, address, sex, email, groupid} = req.body;
+        await userModel.createNewUser(username, password, fullname, address, sex, email, groupid)
+        res.redirect("/list-user")
+    }else{
+        return res.status(404).json({ message: 'Tên tài khoản đã tồn tại' });
+    }
+    
 }
 const listUser = async (req, res) => {
     const users = await userModel.getAllUser();
     res.render('main', { users: users ,data: {page: 'listUser'}});
-}
-const listProduct = async(req, res) => {
-    const id_product = await userModel.getAllProduct();
-    res.render('main', { id_product: id_product ,data: {page: 'listProduct'}});
 }
 const detailUser = async (req, res) => {
     const username = req.params.username;
@@ -34,15 +34,6 @@ const detailUser = async (req, res) => {
     res.render("main", {username: user, data: {page: 'detailUser'}})
     // Trả về chi tiết người dùng
 }
-const detailProduct = async (req, res) => {
-    const idsanpham = req.params.idsp;
-    // Thực hiện tìm kiếm người dùng với username
-    const idsp = await userModel.detail_Product(idsanpham);
-    if (!user) {
-      return res.status(404).json({ message: 'Sản phẩm không tồn tại' });
-    }
-    res.render("main", {idsp: idsp, data: {page: 'detailProduct'}})
-}
 const deleteUser = async (req, res) => {
     const username = req.params.username;
     const user = await userModel.fun_deleteUser(username);
@@ -52,46 +43,19 @@ const deleteUser = async (req, res) => {
         res.redirect('/list-user');
     }
 }
-const deleteProduct = async (req, res) => {
-    const idsanpham = req.params.idsp;
-    const idsp = await userModel.fun_deleteProduct(idsanpham);
-    if (!idsp) {
-        return res.status(404).json({ message: 'Người dùng không tồn tại' });
-    }else{
-        res.redirect('/list-product');
-    }
-}
 const editUser = async (req, res) => {
     const username = req.params.username;
     const users = await userModel.detailUser(username);
     res.render('editUser', {users: users})
 }
-const editProduct = async (req, res) => {
-    const idsanpham = req.params.idsp;
-    const idsp = await userModel.detail_Product(idsanpham);
-    res.render('editProduct', {idsp: idsp})
+const login = (req, res) => {
+    res.render('login')
 }
-const updateProduct = async (req, res) => {
-    const idsanpham = req.params.idsp;
-    const {tensp, chitietsp, giasp, hinhanh,iddanhmuc} = req.body;
-    await userModel.update_Product(tensp, chitietsp, giasp, hinhanh,iddanhmuc, idsanpham)
-    res.redirect("/list-product")
-}
-
 const updateUser = async (req, res) => {
     const username = req.params.username;
     const {fullname, address, sex, email, groupid} = req.body;
     await userModel.update_User(fullname, address, sex, email, groupid, username)
     res.redirect("/list-user")
-}
-
-
-const user = (req, res) => {
-        res.send("Lỗi 404, không tìm thấy trang")
-}
-
-const login = (req, res) => {
-    res.render('login')
 }
 const authLogin = async (req, res) => {
     const {username, password} = req.body;
@@ -116,7 +80,6 @@ const authLogin = async (req, res) => {
     }
     
 }
-
 const logout = async (req, res) => {
     req.session.destroy((err) => {
         if (err) {
@@ -128,4 +91,89 @@ const logout = async (req, res) => {
 }
 
 
-export default {getAllUser, insertUser, login, listUser, user, create_user, detailUser, deleteUser, editUser, updateUser, authLogin, logout, listProduct, detailProduct, deleteProduct, editProduct, updateProduct}
+
+const listProduct = async(req, res) => {
+    const id_product = await userModel.getAllProduct();
+    res.render('main', { id_product: id_product ,data: {page: 'listProduct'}});
+}
+
+const detailProduct = async (req, res) => {
+    const idsanpham = req.params.idsp;
+    // Thực hiện tìm kiếm người dùng với username
+    const idsp = await userModel.detail_Product(idsanpham);
+    if (!user) {
+      return res.status(404).json({ message: 'Sản phẩm không tồn tại' });
+    }
+    res.render("main", {idsp: idsp, data: {page: 'detailProduct'}})
+}
+
+const deleteProduct = async (req, res) => {
+    const idsanpham = req.params.idsp;
+    const idsp = await userModel.fun_deleteProduct(idsanpham);
+    if (!idsp) {
+        return res.status(404).json({ message: 'Người dùng không tồn tại' });
+    }else{
+        res.redirect('/list-product');
+    }
+}
+const create_product = async (req, res) => {
+    const {tensp,chitietsp,giasp,hinhanh,iddanhmuc} = req.body;
+    await userModel.createProduct(tensp,chitietsp,giasp,hinhanh,iddanhmuc)
+    res.redirect("/list-product")
+}
+const insertProduct = async (req, res) => {
+    const iddanhmuc = await userModel.getAllcategory()
+    res.render('newProduct', {iddanhmuc: iddanhmuc})
+}
+const editProduct = async (req, res) => {
+    const idsanpham = req.params.idsp;
+    const idsp = await userModel.detail_Product(idsanpham);
+    const iddanhmuc = await userModel.getAllcategory()
+    res.render('editProduct', {idsp: idsp, iddanhmuc: iddanhmuc})
+    console.log(idsp)
+}
+const updateProduct = async (req, res) => {
+    const idsanpham = req.params.idsp;
+    const {tensp, chitietsp, giasp, hinhanh,iddanhmuc} = req.body;
+    await userModel.update_Product(tensp, chitietsp, giasp, hinhanh,iddanhmuc, idsanpham)
+    res.redirect("/list-product")
+}
+
+
+
+const listCategogy = async (req, res) => {
+    const iddanhmuc = await userModel.getAllcategory();
+    res.render('main', { iddanhmuc: iddanhmuc ,data: {page: 'listCategory'}});
+}
+const editCategory = async (req, res) => {
+    const iddm = req.params.iddm;
+    const iddanhmuc = await userModel.detail_category(iddm);
+    res.render('editCategory', {iddanhmuc: iddanhmuc})
+}
+const updateCategory = async (req, res) => {
+    const iddanhmuc = req.params.iddm;
+    const {tendanhmuc} = req.body;
+    await userModel.update_Category(tendanhmuc,iddanhmuc)
+    res.redirect("/list-category")
+}
+const deleteCategory = async (req, res) => {
+    const iddm= req.params.iddm;
+    const iddanhmuc = await userModel.fun_deleteCategory(iddm);
+    if (!iddanhmuc) {
+        return res.status(404).json({ message: 'Danh mục không tồn tại' });
+    }else{
+        res.redirect('/list-category');
+    }
+}
+const insertCategory = async (req, res) => {
+    res.render('newCategory')
+}
+const create_category = async (req, res) => {
+    const {tendanhmuc} = req.body;
+    await userModel.createCategory(tendanhmuc)
+    res.redirect("/list-category")
+}
+
+
+
+export default {getAllUser, insertUser, login, listUser, create_user, detailUser, deleteUser, editUser, updateUser, authLogin, logout, listProduct, detailProduct, create_product, deleteProduct, editProduct, updateProduct, listCategogy, editCategory, updateCategory,deleteCategory, insertProduct,insertCategory, create_category}
