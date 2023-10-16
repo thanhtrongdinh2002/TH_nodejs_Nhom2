@@ -133,6 +133,13 @@ const createCategory = async (tendanhmuc) => {
     [tendanhmuc]
   );
 };
+const getproductbycateory = async (tendanhmuc) => {
+  const [rows, fields] = await pool.execute(
+    "SELECT * FROM `sp` WHERE iddanhmuc=? ",
+    [tendanhmuc]
+  );
+  return rows;
+}
 export default {
   getAllUser,
   createNewUser,
@@ -153,4 +160,5 @@ export default {
   list_sanpham,
   chitietsp,
   timkiem,
+  getproductbycateory,
 };
