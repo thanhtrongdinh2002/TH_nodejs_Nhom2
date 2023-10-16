@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="sanpham">
+        <ul>
+            <% for(let i=0; i<idsp.length;i++){%>
+                <a class="TT_SP" href=""
+                    style="list-style: none; float: left; padding-right: 50px; border: 1px; text-decoration: none;">
+                    <img src="/image/<%= idsp[i].hinhanh %>" alt="" style="height: 100px; width: 100px;"> <br>
+                    <li>
+                        <%= idsp[i].tensp %>
+                    </li>
+                    <%= idsp[i].giasp %> <br>
+                        <%= idsp[i].chitietsp %>
+
+                </a>
+                <%}%>
+        </ul>
+    </div>
+    <div>
+        <a href="/list-sanpham">Quay lại</a>
+    </div>
+</body>
+
+</html>

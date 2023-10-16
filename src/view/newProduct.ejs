@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <form action="/create-product" method="post">
+    <form action="/create-product" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Tên sản phẩm</label>
             <input type="text" class="form-control" name="tensp" id="ProductName">
@@ -29,7 +29,7 @@
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Hình ảnh</label>
-            <input type="text" class="form-control" name="hinhanh" id="ProductImage">
+            <input type="file" class="form-control" name="hinhanh" id="ProductImage" >
         </div>
         <% for(let i=0; i<iddanhmuc.length;i++){%>
             <div class="form-check">

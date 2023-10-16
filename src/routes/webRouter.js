@@ -17,6 +17,12 @@ const initRouter = (app) => {
   // Định nghĩa tuyến đường cho /list-user và chạy qua controller
   app.get("/list-user", isLogin, isRole,UserController.listUser);
 
+  app.get("/list-danhmuc",isLogin, UserController.danhmuc);
+  app.get("/list-sanpham", UserController.sanpham);
+  app.get("/chitietsp", UserController.chitietsp);
+  app.post("/timkiem", UserController.timkiem)
+
+
   app.get("/list-product", isLogin, isRole,UserController.listProduct);
   app.get("/detail-product/:idsp",isLogin, isRole, UserController.detailProduct);
   app.get("/delete-product/:idsp",isLogin, isRole, UserController.deleteProduct);
@@ -32,7 +38,5 @@ const initRouter = (app) => {
   app.get("/delete-category/:iddm",isLogin, isRole, UserController.deleteCategory);
   app.get("/insert-category",isLogin, isRole, UserController.insertCategory);
   app.post("/create-category",isLogin, isRole, UserController.create_category);
-
-
 };
 export default initRouter;
