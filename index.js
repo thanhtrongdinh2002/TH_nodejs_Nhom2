@@ -11,9 +11,15 @@ app.use(session({
   }))
 dotenv.config()
 const port = process.env.PORT || 8080
+<<<<<<< HEAD
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 configViewEngine(app)
+=======
+configViewEngine(app)
+app.use(express.urlencoded({extended: false}))
+app.use(express.json())
+>>>>>>> 88991479f194dcbe02bac2e4f5b3edbe911dd837
 initRouter(app)
 app.listen(port, ()=>{
     console.log(`Example app listening on port ${port}`)

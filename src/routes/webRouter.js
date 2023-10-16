@@ -17,9 +17,18 @@ const initRouter = (app) => {
   app.get("/logout",isLogin, isRole, UserController.logout);
   // Định nghĩa tuyến đường cho /list-user và chạy qua controller
   app.get("/list-user", isLogin, isRole,UserController.listUser);
+<<<<<<< HEAD
   app.get("/list-danhmuc",isLogin, UserController.danhmuc);
   app.get("/list-sanpham", UserController.sanpham);
   app.get("/chitietsp", UserController.chitietsp);
   app.post("/timkiem", UserController.timkiem)
+=======
+
+  app.get("/list-product", isLogin, isRole,UserController.listProduct);
+  app.get("/detail-product/:idsp",isLogin, isRole, UserController.detailProduct);
+  app.get("/delete-product/:idsp",isLogin, isRole, UserController.deleteProduct);
+  app.get("/edit-product/:idsp",isLogin, isRole, UserController.editProduct);
+  app.post("/update-product/:idsp",isLogin, isRole, UserController.updateProduct);
+>>>>>>> 88991479f194dcbe02bac2e4f5b3edbe911dd837
 };
 export default initRouter;

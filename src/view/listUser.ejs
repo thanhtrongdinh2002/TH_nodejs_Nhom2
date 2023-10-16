@@ -21,10 +21,14 @@
             <th scope="col">STT</th>
             <th scope="col">Username</th>
             <th scope="col">Fullname</th>
+<<<<<<< HEAD
             <th scope="col">Address</th>
             <th scope="col">Sex</th>
             <th scope="col">Email</th>
             <th scope="col">Groupid</th>
+=======
+            <th scope="col">Sex</th>
+>>>>>>> 88991479f194dcbe02bac2e4f5b3edbe911dd837
             <th scope="col">Chi tiết</th>
             <th scope="col">Sửa</th>
             <th scope="col">Xóa</th>
@@ -43,9 +47,12 @@
                         <%= users[i].fullname %>
                     </td>
                     <td>
+<<<<<<< HEAD
                         <%= users[i].address %>
                     </td>
                     <td>
+=======
+>>>>>>> 88991479f194dcbe02bac2e4f5b3edbe911dd837
                         <%= users[i].name %>
                             <% if (users[i].sex==1) { %>
                                 Nam
@@ -53,12 +60,16 @@
                                     Nữ
                                     <% } %>
                     </td>
+<<<<<<< HEAD
                     <td>
                         <%= users[i].email %>
                     </td>
                     <td>
                         <%= users[i].groupid %>
                     </td>
+=======
+                   
+>>>>>>> 88991479f194dcbe02bac2e4f5b3edbe911dd837
                     
                     <td><a href="/detail-user/<%= users[i].username %>"><i class="fa-solid fa-circle-info"></i></a></td>
                     <td> <a href="/edit-user/<%= users[i].username %>"><i class="fa-regular fa-pen-to-square"></i></a></td>

@@ -10,6 +10,7 @@
 
 <body>
     <%- include('header') %>
+<<<<<<< HEAD
     <%- include('newHome') %>
 
 <% if (data.page) { %>
@@ -23,6 +24,19 @@
     <%- include('footer') %>
 </div>
 
+=======
+
+        <% if (data.page) { %>
+            <%- include(data.page); %>
+                <% } %>
+
+                    <div style="position: fixed;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;">
+                        <%- include('footer') %>
+                    </div>
+>>>>>>> 88991479f194dcbe02bac2e4f5b3edbe911dd837
 </body>
 
 </html>
