@@ -193,23 +193,22 @@ const create_category = async (req, res) => {
 const danhmuc = async (req, res) => {
     const iddanhmuc = await userModel.list_danhmuc()
     res.render("home", { iddanhmuc: iddanhmuc, data: { page: 'newHome' } })
-    console.log(iddanhmuc)
 }
 const sanpham = async (req, res) => {
     const iddanhmuc = await userModel.list_danhmuc()
     let idsp = await userModel.list_sanpham()
     const type= req.query.type
     if(type){
-        idsp = await userModel.getproductbycateory(type)
+        idsp = await userModel.getproductbycategory(type)
     }
     
     res.render("home", { iddanhmuc: iddanhmuc, idsp: idsp, data: { page: 'newHome' } })
 }
-
 const chitietsp = async (req, res) => {
-    const username = req.params.username;
-    const users = await userModel.detailUser(username);
-    res.render('editUser', { users: users })
+    const id =  req.params.id
+    const idsp = await userModel.detail_Product(id)
+    console.log(idsp)
+    res.render("chitietsp",{idchitiet: idsp[0] })
 }
 const timkiem = async (req, res) => {
     const tensp = req.body.query;
