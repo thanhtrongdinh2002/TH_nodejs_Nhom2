@@ -197,9 +197,13 @@ const danhmuc = async (req, res) => {
 }
 const sanpham = async (req, res) => {
     const iddanhmuc = await userModel.list_danhmuc()
-    const idsp = await userModel.list_sanpham()
+    let idsp = await userModel.list_sanpham()
+    const type= req.query.type
+    if(type){
+        idsp = await userModel.getproductbycateory(type)
+    }
+    
     res.render("home", { iddanhmuc: iddanhmuc, idsp: idsp, data: { page: 'newHome' } })
-    console.log(idsp)
 }
 
 const chitietsp = async (req, res) => {
@@ -220,6 +224,7 @@ const timkiem = async (req, res) => {
     }
 
 }
+
 
 export default {getAllUser, insertUser, login, listUser, create_user, detailUser, deleteUser, editUser, updateUser, authLogin, logout, listProduct, detailProduct, create_product, deleteProduct, editProduct, updateProduct, listCategogy, editCategory, updateCategory,deleteCategory, insertProduct,insertCategory, create_category, danhmuc, sanpham,chitietsp,timkiem}
 
