@@ -4,7 +4,9 @@ import initRouter from "./src/routes/webRouter.js"
 import session from "express-session"
 import configViewEngine from "./src/configs/viewEngine.js"
 import fileUpload from "express-fileupload"
+import cors from "cors"
 const app = express()
+app.use(cors()) // Use this after the variable declaration
 app.use(session({
     secret: 'keyboard cat',
     resave: false,

@@ -13,12 +13,11 @@ const createNewUser = async (
   fullname,
   address,
   sex,
-  email,
-  groupid
+  email
 ) => {
   const [rows, fields] = await pool.execute(
-    "INSERT INTO `users`(`username`, `password`, `fullname`, `address`, `sex`, `email`, `groupid`) VALUES (?,?,?,?,?,?,?)",
-    [username, password, fullname, address, sex, email, groupid]
+    "INSERT INTO `users`(`username`, `password`, `fullname`, `address`, `sex`, `email`) VALUES (?,?,?,?,?,?)",
+    [username, password, fullname, address, sex, email]
   );
 };
 const detailUser = async (username) => {
